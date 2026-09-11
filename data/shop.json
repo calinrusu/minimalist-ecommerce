@@ -1,0 +1,26 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Classic Hoodie",
+            "price": 39.9,
+            "description": "Soft cotton hoodie in a neutral color.",
+            "image": "hoodie.svg"
+        },
+        {
+            "id": 2,
+            "name": "Minimal Backpack",
+            "price": 49.5,
+            "description": "Compact backpack for daily use.",
+            "image": "backpack.svg"
+        },
+        {
+            "id": 3,
+            "name": "Ceramic Mug",
+            "price": 14.99,
+            "description": "Warm mug with a modern glaze finish.",
+            "image": "mug.svg"
+        }
+    ],
+    "orders": []
+}

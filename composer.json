@@ -1,0 +1,6 @@
+{
+    "name": "minimalist-ecommerce/core-php-site",
+    "description": "Small ecommerce website starter in procedural PHP",
+    "type": "project",
+    "require": {}
+}
