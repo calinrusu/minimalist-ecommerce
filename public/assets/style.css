@@ -4,6 +4,9 @@ body {
     background: #f8fafc;
     color: #0f172a;
 }
+main {
+	min-height: 70vh;
+}
 .container {
     width: 72%;
     margin: 0 auto;

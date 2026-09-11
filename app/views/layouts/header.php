@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= SHOP_NAME ?></title>
+    <title><?= META_TITLE ?></title>
     <meta name="description" content="<?= META_DESCRIPTION ?>">
     <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -17,7 +17,6 @@
         <nav>
             <a href="index.php">Products</a>
             <a href="cart.php">Cart</a>
-            <a href="orders.php">Orders</a>
             <a href="account.php">Account</a>
         </nav>
         <form class="search-form" method="get" action="index.php">
