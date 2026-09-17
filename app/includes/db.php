@@ -1,57 +1,182 @@
 <?php
-// app/includes/db.php
 
-function db(): PDO
+function getStoreFilePath(): string
 {
-    static $pdo = null;
+    if (!is_dir(DB_PATH)) {
+        mkdir(DB_PATH, 0777, true);
+    }
+    return DB_PATH . '/products.json';
+}
 
-    if ($pdo instanceof PDO) {
-        return $pdo;
+function loadAdminList(): array
+{
+	$contents = file_get_contents(DB_PATH . '/admins.json');
+	return json_decode($contents, true);
+}
+
+function loadStore(): array
+{
+    $storeFile = getStoreFilePath();
+
+    if (!file_exists($storeFile)) {
+        $store = [
+            'products' => [
+                ['id' => 1, 'name' => 'Classic Hoodie', 'price' => 29.90, 'description' => 'Soft cotton hoodie in a neutral color.', 'image' => 'hoodie.svg'],
+                ['id' => 2, 'name' => 'Minimal Backpack', 'price' => 49.50, 'description' => 'Compact backpack for daily use.', 'image' => 'backpack.svg'],
+                ['id' => 3, 'name' => 'Ceramic Mug', 'price' => 14.99, 'description' => 'Warm mug with a modern glaze finish.', 'image' => 'mug.svg'],
+            ],
+            'orders' => [],
+        ];
+        saveStore($store);
+        return $store;
     }
 
-    $cfg = require APP_PATH . '/config/database.php';
+    $contents = file_get_contents($storeFile);
+    if ($contents === false || trim($contents) === '') {
+        $store = ['products' => [], 'orders' => []];
+        saveStore($store);
+        return $store;
+    }
 
-    $dsn = sprintf(
-        'mysql:host=%s;port=%s;dbname=%s;charset=%s',
-        $cfg['host'],
-        $cfg['port'],
-        $cfg['name'],
-        $cfg['charset']
-    );
+    $decoded = json_decode($contents, true);
+    if (!is_array($decoded)) {
+        $decoded = ['products' => [], 'orders' => []];
+    }
 
-    $pdo = new PDO($dsn, $cfg['user'], $cfg['pass'], [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ]);
+    if (!isset($decoded['products']) || !is_array($decoded['products'])) {
+        $decoded['products'] = [];
+    }
 
-    return $pdo;
+    if (!isset($decoded['orders']) || !is_array($decoded['orders'])) {
+        $decoded['orders'] = [];
+    }
+
+    return $decoded;
 }
 
-function db_query(string $sql, array $params = []): PDOStatement
+function saveStore(array $store): void
 {
-    $stmt = db()->prepare($sql);
-    $stmt->execute($params);
-    return $stmt;
+    file_put_contents(getStoreFilePath(), json_encode($store, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), LOCK_EX);
 }
 
-function db_fetch_one(string $sql, array $params = []): ?array
+function getProducts(): array
 {
-    $row = db_query($sql, $params)->fetch();
-    return $row === false ? null : $row;
+    $store = loadStore();
+    return $store['products'] ?? [];
 }
 
-function db_fetch_all(string $sql, array $params = []): array
+function searchProducts(string $term, string $category = ''): array
 {
-    return db_query($sql, $params)->fetchAll();
+    $normalized = trim($term);
+    $categoryFilter = trim($category);
+
+
+
+    $products = getProducts();
+    $filtered = [];
+    foreach ($products as $product) {
+        $matchesCategory = $categoryFilter === '' || strtolower($product['category'] ?? 'General') === strtolower($categoryFilter);
+        $matchesTerm = $normalized === '' || str_contains(strtolower($product['name'] . ' ' . ($product['description'] ?? '')), strtolower($normalized));
+
+        if ($matchesCategory && $matchesTerm) {
+            $filtered[] = $product;
+        }
+    }
+
+    return $filtered;
 }
 
-function db_execute(string $sql, array $params = []): int
+function getProductById(int $productId): ?array
 {
-    return db_query($sql, $params)->rowCount();
+    foreach (getProducts() as $product) {
+        if ((int) $product['id'] === $productId) {
+            return $product;
+        }
+    }
+
+    return null;
 }
 
-function db_last_id(): string
+function createProductInStorage(string $name, float $price, string $description, string $image): void
 {
-    return db()->lastInsertId();
+    $store = loadStore();
+    $nextId = 1;
+    foreach ($store['products'] as $product) {
+        $nextId = max($nextId, (int) $product['id'] + 1);
+    }
+
+    $store['products'][] = [
+        'id' => $nextId,
+        'name' => $name,
+        'price' => $price,
+        'description' => $description,
+        'image' => $image,
+    ];
+
+    saveStore($store);
+}
+
+function updateProductInStorage(int $productId, array $data): void
+{
+    $store = loadStore();
+    foreach ($store['products'] as &$product) {
+        if ((int) $product['id'] === $productId) {
+            $product['name'] = $data['name'];
+            $product['price'] = (float) $data['price'];
+            $product['description'] = $data['description'];
+            $product['image'] = $data['image'];
+            break;
+        }
+    }
+
+    saveStore($store);
+}
+
+function deleteProductFromStorage(int $productId): void
+{
+    $store = loadStore();
+    $store['products'] = array_values(array_filter($store['products'], static function (array $product) use ($productId): bool {
+        return (int) $product['id'] !== $productId;
+    }));
+
+    saveStore($store);
+}
+
+function createOrderInStorage(string $customerName, string $email, string $address, array $items, float $total): int
+{
+    $store = loadStore();
+    $orderId = count($store['orders']) + 1;
+    $store['orders'][] = [
+        'id' => $orderId,
+        'customer_name' => $customerName,
+        'email' => $email,
+        'address' => $address,
+        'items' => $items,
+        'total' => $total,
+        'status' => 'Pending',
+        'created_at' => date('Y-m-d H:i:s'),
+    ];
+
+    saveStore($store);
+
+    return $orderId;
+}
+
+function updateOrderStatusInStorage(int $orderId, string $status): void
+{
+    $store = loadStore();
+    foreach ($store['orders'] as &$order) {
+        if ((int) $order['id'] === $orderId) {
+            $order['status'] = $status;
+            break;
+        }
+    }
+
+    saveStore($store);
+}
+
+function getOrdersFromStorage(): array
+{
+    $store = loadStore();
+    return array_reverse($store['orders'] ?? []);
 }

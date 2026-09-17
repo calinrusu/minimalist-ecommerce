@@ -1,5 +1,4 @@
 <?php
-// app/includes/csrf.php
 
 function csrf_token()
 {

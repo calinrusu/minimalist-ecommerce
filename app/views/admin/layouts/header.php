@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
+<?php if (isAdminLoggedIn()) { ?>
 <header class="site-header">
     <div class="container">
         <h1><a href="index.php"><?= SHOP_NAME ?></a></h1>
@@ -22,6 +23,7 @@
         </form>
     </div>
 </header>
+<?php } ?>
 <main class="container">
     <?php if (!empty($_SESSION['flash'])): ?>
         <div class="alert"><?php echo htmlspecialchars($_SESSION['flash']); ?></div>

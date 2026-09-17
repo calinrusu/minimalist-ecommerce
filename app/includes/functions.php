@@ -1,5 +1,4 @@
 <?php
-// app/includes/functions.php
 
 function addToCart(int $productId, int $quantity = 1): void
 {
