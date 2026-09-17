@@ -24,8 +24,7 @@ function loadStore(): array
                 ['id' => 1, 'name' => 'Classic Hoodie', 'price' => 29.90, 'description' => 'Soft cotton hoodie in a neutral color.', 'image' => 'hoodie.svg'],
                 ['id' => 2, 'name' => 'Minimal Backpack', 'price' => 49.50, 'description' => 'Compact backpack for daily use.', 'image' => 'backpack.svg'],
                 ['id' => 3, 'name' => 'Ceramic Mug', 'price' => 14.99, 'description' => 'Warm mug with a modern glaze finish.', 'image' => 'mug.svg'],
-            ],
-            'orders' => [],
+            ]
         ];
         saveStore($store);
         return $store;
@@ -33,25 +32,21 @@ function loadStore(): array
 
     $contents = file_get_contents($storeFile);
     if ($contents === false || trim($contents) === '') {
-        $store = ['products' => [], 'orders' => []];
+        $store = ['products' => []];
         saveStore($store);
         return $store;
     }
 
     $decoded = json_decode($contents, true);
     if (!is_array($decoded)) {
-        $decoded = ['products' => [], 'orders' => []];
+        $decoded = ['products' => []];
     }
 
     if (!isset($decoded['products']) || !is_array($decoded['products'])) {
         $decoded['products'] = [];
     }
 
-    if (!isset($decoded['orders']) || !is_array($decoded['orders'])) {
-        $decoded['orders'] = [];
-    }
-
-    return $decoded;
+    return $decoded['products'];
 }
 
 function saveStore(array $store): void

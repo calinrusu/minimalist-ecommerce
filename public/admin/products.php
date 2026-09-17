@@ -7,6 +7,35 @@ if (!isAdminLoggedIn()) {
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if (isset($_POST['add'])) {
+		
+	}
+	if (isset($_POST['update'])) {
+		
+	}
+	header('Location: /admin/products.php');
+	exit;
+}
+
+$products = loadStore();
+
 require APP_PATH . '/views/admin/layouts/header.php';
-require APP_PATH . '/views/admin/pages/products.php';
+
+if (isset($_GET['add'])) {
+
+	require_once APP_PATH . '/views/admin/pages/add_product.php';
+
+} elseif (isset($_GET['edit'])) {
+
+	$productId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+	$product = getProductById($productId);
+	require_once APP_PATH . '/views/admin/pages/edit_product.php';
+
+} else {
+
+	require APP_PATH . '/views/admin/pages/products.php';	
+
+}
+
 require APP_PATH . '/views/admin/layouts/footer.php';
