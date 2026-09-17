@@ -8,5 +8,5 @@ if (!isAdminLoggedIn()) {
 }
 
 require APP_PATH . '/views/admin/layouts/header.php';
-require APP_PATH . '/views/admin/pages/home.php';
+require APP_PATH . '/views/admin/pages/products.php';
 require APP_PATH . '/views/admin/layouts/footer.php';

@@ -1,6 +1,6 @@
-# Small Ecommerce PHP Site
+# Small Ecommerce NoSQL PHP Site
 
-Simple ecommerce website built with core PHP and procedural code.
+Simple ecommerce website built with core PHP and procedural code with non-SQL database support.
 
 ## Requirements
 
@@ -18,4 +18,4 @@ Simple ecommerce website built with core PHP and procedural code.
 
 - Shared setup is loaded through app/bootstrap.php
 - Only the public folder should be exposed by the web server
-- By default it's using a json file in the data folder to store products, accounts and orders. It can be configured to use a MySQL database with PDO
+- Data is stored in json files in a data directory

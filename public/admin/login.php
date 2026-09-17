@@ -1,7 +1,7 @@
 <?php
+
 require_once dirname(__DIR__) . '/../app/bootstrap.php';
-$admins = loadAdminList();
-var_dump($admins); exit;
+
 if (isAdminLoggedIn()) {
 	header('Location: /admin/');
 	exit;
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if ($value['username'] === $username && $value['password'] === $password) {
 				break;
 			}
-			$_SESSION['admin'] = md5($username);
+			$_SESSION['is_admin'] = md5($username);
 			setFlashMessage('Login successful!');
 			header('Location: /admin/');
 			exit;

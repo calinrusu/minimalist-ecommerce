@@ -11,16 +11,13 @@
 <?php if (isAdminLoggedIn()) { ?>
 <header class="site-header">
     <div class="container">
-        <h1><a href="index.php"><?= SHOP_NAME ?></a></h1>
         <nav>
-            <a href="/index.php">Products</a>
-            <a href="/cart.php">Cart</a>
-            <a href="/account.php">Account</a>
+            <a href="/admin">Admin</a>
+            <a href="/admin/products.php">Products</a>
+            <a href="/admin/users.php">Users</a>
+            <a href="/admin/orders.php">Orders</a>
+            <a href="/admin/logout.php">Logout</a>
         </nav>
-        <form class="search-form" method="get" action="index.php">
-            <input type="text" name="search" value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>" placeholder="Search products">
-            <button type="submit">Search</button>
-        </form>
     </div>
 </header>
 <?php } ?>
