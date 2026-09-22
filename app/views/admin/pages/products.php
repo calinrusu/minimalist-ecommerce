@@ -17,7 +17,9 @@
 			<td><?= $value['price'] ?></td>
 			<td><?= $value['description'] ?></td>
 			<td>
-			
+				<a href="/admin/products.php?view=<?= $value['id'] ?>">View</a>
+				<a href="/admin/products.php?edit=<?= $value['id'] ?>">Edit</a>
+				<a href="/admin/products.php?delete=<?= $value['id'] ?>">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>

@@ -9,11 +9,11 @@
     <a class="btn btn-secondary" href="index.php?category=Accessories">Accessories</a>
     <a class="btn btn-secondary" href="index.php?category=Home">Home</a>
 </div>
-<?php if ($searchTerm !== '' || $category !== ''): ?>
+<?php var_export($products); if ($searchTerm !== '' || $category !== ''): ?>
     <p>Showing results for: <strong><?php echo htmlspecialchars($searchTerm !== '' ? $searchTerm : $category); ?></strong></p>
 <?php endif; ?>
 <div class="grid">
-    <?php if (empty($products)): ?>
+    <?php if (count($products) === 0): ?>
         <p>No products match your search.</p>
     <?php endif; ?>
     <?php foreach ($products as $product): ?>

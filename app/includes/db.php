@@ -18,18 +18,6 @@ function loadStore(): array
 {
     $storeFile = getStoreFilePath();
 
-    if (!file_exists($storeFile)) {
-        $store = [
-            'products' => [
-                ['id' => 1, 'name' => 'Classic Hoodie', 'price' => 29.90, 'description' => 'Soft cotton hoodie in a neutral color.', 'image' => 'hoodie.svg'],
-                ['id' => 2, 'name' => 'Minimal Backpack', 'price' => 49.50, 'description' => 'Compact backpack for daily use.', 'image' => 'backpack.svg'],
-                ['id' => 3, 'name' => 'Ceramic Mug', 'price' => 14.99, 'description' => 'Warm mug with a modern glaze finish.', 'image' => 'mug.svg'],
-            ]
-        ];
-        saveStore($store);
-        return $store;
-    }
-
     $contents = file_get_contents($storeFile);
     if ($contents === false || trim($contents) === '') {
         $store = ['products' => []];
@@ -57,15 +45,13 @@ function saveStore(array $store): void
 function getProducts(): array
 {
     $store = loadStore();
-    return $store['products'] ?? [];
+    return $store ?? [];
 }
 
 function searchProducts(string $term, string $category = ''): array
 {
     $normalized = trim($term);
     $categoryFilter = trim($category);
-
-
 
     $products = getProducts();
     $filtered = [];
@@ -96,11 +82,11 @@ function createProductInStorage(string $name, float $price, string $description,
 {
     $store = loadStore();
     $nextId = 1;
-    foreach ($store['products'] as $product) {
+    foreach ($store as $product) {
         $nextId = max($nextId, (int) $product['id'] + 1);
     }
 
-    $store['products'][] = [
+    $store[] = [
         'id' => $nextId,
         'name' => $name,
         'price' => $price,
