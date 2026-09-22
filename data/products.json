@@ -3,6 +3,7 @@
         {
             "id": 1,
             "name": "Classic Hoodie",
+            "category": "Clothing",
             "price": 29.9,
             "description": "Soft cotton hoodie in a neutral color.",
             "image": "hoodie.svg"
@@ -10,6 +11,7 @@
         {
             "id": 2,
             "name": "Minimal Backpack",
+            "category": "Apparel",
             "price": 49.5,
             "description": "Compact backpack for daily use.",
             "image": "backpack.svg"
@@ -17,6 +19,7 @@
         {
             "id": 3,
             "name": "Ceramic Mug",
+            "category": "Other",
             "price": 14.99,
             "description": "Warm mug with a modern glaze finish.",
             "image": "mug.svg"

@@ -1,4 +1,7 @@
 <h1>Products</h1>
+<div class="text-end mt3">
+	<a href="/admin/products.php?add">Add product</a>
+</div>
 <table class="table-bordered">
 	<thead>
 		<tr>
