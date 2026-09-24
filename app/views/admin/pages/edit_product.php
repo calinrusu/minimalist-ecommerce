@@ -1,7 +1,7 @@
 <div class="container">
 	<h1 class="text-center">Edit product</h1>
 	<div class="w50">
-		<form class="form w-100" method="post" action="/admin/products.php">
+		<form class="form w-100" method="post" action="/admin/products.php" enctype="multipart/form-data">
 			<input type="hidden" name="update" value="<?= $product['id'] ?>">
 			<div class="form-input">
 				<label>Product name *</label>
@@ -18,6 +18,13 @@
 			<div class="form-input">
 				<label>Product price *</label>
 				<input type="number" name="price" required min="0.01" step="0.01" value="<?= $product['price'] ?>">
+			</div>
+			<div class="img">
+				<img src="<?= $product['image'] ?>" style="width:100%;">
+			</div>
+			<div class="form-input">
+				<label>New image (if selected it will replace existing - jpeg only)</label>
+				<input type="file" name="img" accept="image/jpeg">
 			</div>
 			<div class="submit">
 				<input type="submit" class="btn w100" value="Update">

@@ -1,7 +1,7 @@
 <div class="container">
 	<h1 class="text-center">Add new product</h1>
 	<div class="w50">
-		<form class="form" method="post" action="/admin/products.php">
+		<form class="form" method="post" action="/admin/products.php" enctype="multipart/form-data">
 			<input type="hidden" name="add">
 			<div class="form-input">
 				<label>Product name *</label>
@@ -18,6 +18,13 @@
 			<div class="form-input">
 				<label>Product price *</label>
 				<input type="number" name="price" required min="0.01" step="0.01">
+			</div>
+			<div class="form-input">
+				<label>Image *</label>
+				<input type="file" name="img" required accept="image/jpeg">
+			</div>
+			<div class="submit">
+				<input type="submit" class="btn w100" value="Add">
 			</div>
 		</form>
 	</div>

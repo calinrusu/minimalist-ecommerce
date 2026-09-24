@@ -20,21 +20,17 @@ function loadStore(): array
 
     $contents = file_get_contents($storeFile);
     if ($contents === false || trim($contents) === '') {
-        $store = ['products' => []];
+        $store = [];
         saveStore($store);
         return $store;
     }
 
     $decoded = json_decode($contents, true);
     if (!is_array($decoded)) {
-        $decoded = ['products' => []];
+        $decoded = [];
     }
 
-    if (!isset($decoded['products']) || !is_array($decoded['products'])) {
-        $decoded['products'] = [];
-    }
-
-    return $decoded['products'];
+    return $decoded;
 }
 
 function saveStore(array $store): void
@@ -78,7 +74,7 @@ function getProductById(int $productId): ?array
     return null;
 }
 
-function createProductInStorage(string $name, float $price, string $description, string $image): void
+function createProductInStorage(string $name, string $category, float $price, string $description, string $image): void
 {
     $store = loadStore();
     $nextId = 1;
@@ -89,6 +85,7 @@ function createProductInStorage(string $name, float $price, string $description,
     $store[] = [
         'id' => $nextId,
         'name' => $name,
+        'category' => $category,
         'price' => $price,
         'description' => $description,
         'image' => $image,
@@ -100,9 +97,10 @@ function createProductInStorage(string $name, float $price, string $description,
 function updateProductInStorage(int $productId, array $data): void
 {
     $store = loadStore();
-    foreach ($store['products'] as &$product) {
+    foreach ($store as &$product) {
         if ((int) $product['id'] === $productId) {
             $product['name'] = $data['name'];
+            $product['category'] = $data['category'];
             $product['price'] = (float) $data['price'];
             $product['description'] = $data['description'];
             $product['image'] = $data['image'];
@@ -116,7 +114,7 @@ function updateProductInStorage(int $productId, array $data): void
 function deleteProductFromStorage(int $productId): void
 {
     $store = loadStore();
-    $store['products'] = array_values(array_filter($store['products'], static function (array $product) use ($productId): bool {
+    $store = array_values(array_filter($store, static function (array $product) use ($productId): bool {
         return (int) $product['id'] !== $productId;
     }));
 

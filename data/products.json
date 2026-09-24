@@ -1,28 +1,18 @@
-{
-    "products": [
-        {
-            "id": 1,
-            "name": "Classic Hoodie",
-            "category": "Clothing",
-            "price": 29.9,
-            "description": "Soft cotton hoodie in a neutral color.",
-            "image": "hoodie.svg"
-        },
-        {
-            "id": 2,
-            "name": "Minimal Backpack",
-            "category": "Apparel",
-            "price": 49.5,
-            "description": "Compact backpack for daily use.",
-            "image": "backpack.svg"
-        },
-        {
-            "id": 3,
-            "name": "Ceramic Mug",
-            "category": "Other",
-            "price": 14.99,
-            "description": "Warm mug with a modern glaze finish.",
-            "image": "mug.svg"
-        }
-    ]
-}
+[
+    {
+        "id": 4,
+        "name": "Product number 4",
+        "category": "Test",
+        "price": 59.6,
+        "description": "dfghdjf\r\njasdhgjdgh\r\nasdghdfjd\r\nsdahgkd",
+        "image": "\/assets\/images\/productnumber4.jpeg"
+    },
+    {
+        "id": 5,
+        "name": "Fleet 100",
+        "category": "Clothing",
+        "price": 9.99,
+        "description": "jdhgkjdfs\r\nsdfghjfd\r\nsdkaghkalsdf\r\ndslkahgkldsfhdl\r\ndskfgnkfdsal",
+        "image": "\/assets\/images\/fleet100.jpeg"
+    }
+]

@@ -9,7 +9,7 @@
     <a class="btn btn-secondary" href="index.php?category=Accessories">Accessories</a>
     <a class="btn btn-secondary" href="index.php?category=Home">Home</a>
 </div>
-<?php var_export($products); if ($searchTerm !== '' || $category !== ''): ?>
+<?php if ($searchTerm !== '' || $category !== ''): ?>
     <p>Showing results for: <strong><?php echo htmlspecialchars($searchTerm !== '' ? $searchTerm : $category); ?></strong></p>
 <?php endif; ?>
 <div class="grid">
@@ -18,7 +18,7 @@
     <?php endif; ?>
     <?php foreach ($products as $product): ?>
         <div class="card product-card">
-            <img src="assets/images/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.svg'); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="product-image">
+            <img src="<?php echo htmlspecialchars($product['image'] ?? 'placeholder.svg'); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="product-image">
             <h3><?php echo htmlspecialchars($product['name']); ?></h3>
             <p><?php echo htmlspecialchars($product['description']); ?></p>
             <p><strong>$<?php echo number_format((float) $product['price'], 2); ?></strong></p>
