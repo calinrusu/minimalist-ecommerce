@@ -12,7 +12,7 @@
 </head>
 <body>
 <header class="site-header">
-    <div class="container" style="display:flex; flex-wrap: wrap;">
+    <div class="container flex">
         <nav>
             <a href="/"><?= SHOP_NAME ?></a>
             <a href="/">Products</a>
