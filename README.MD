@@ -19,3 +19,7 @@ Simple ecommerce website built with core PHP and procedural code with non-SQL da
 - Shared setup is loaded through app/bootstrap.php
 - Only the public folder should be exposed by the web server
 - Data is stored in json files in a data directory
+
+## Demo URL
+
+- Shop demo live URL: https://ecommerce.calinrusu.online/
