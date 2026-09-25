@@ -12,14 +12,14 @@
 </head>
 <body>
 <header class="site-header">
-    <div class="container">
-        <h1><a href="index.php"><?= SHOP_NAME ?></a></h1>
+    <div class="container" style="display:flex; flex-wrap: wrap;">
         <nav>
-            <a href="index.php">Products</a>
-            <a href="cart.php">Cart</a>
-            <a href="account.php">Account</a>
+            <a href="/"><?= SHOP_NAME ?></a>
+            <a href="/">Products</a>
+            <a href="/cart.php">Cart</a>
+            <a href="/account.php">Account</a>
         </nav>
-        <form class="search-form" method="get" action="index.php">
+        <form class="search-form" method="get" action="/">
             <input type="text" name="search" value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>" placeholder="Search products">
             <button type="submit">Search</button>
         </form>

@@ -23,21 +23,41 @@
     </div>
 <?php else: ?>
     <div class="grid">
-        <div class="card">
+        <div class="card w50">
             <h3>Create account</h3>
-            <form method="post" class="admin-form">
-                <input type="text" name="name" placeholder="Your name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="register">Create account</button>
+            <form method="post">
+                <div class="w100">
+                	<label>Your name *</label>
+                	<input type="text" name="name" required>
+                </div>
+                <div class="w100">
+                	<label>Your email *</label>
+                	<input type="email" name="email" required>
+                </div>
+                <div class="w100">
+                	<label>Your password *</label>
+                	<input type="password" name="password" minlength="8" required>
+                </div>
+                <div class="w100">
+                	<button type="submit" name="register">Create account</button>
+                </div>
             </form>
         </div>
-        <div class="card">
+
+        <div class="card w50">
             <h3>Login</h3>
-            <form method="post" class="admin-form">
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="login">Login</button>
+            <form method="post">
+                <div class="w100">
+                	<label>Your email *</label>
+                	<input type="email" name="email" required>
+                </div>
+                <div class="w100">
+                	<label>Your password *</label>
+                	<input type="password" name="password" minlength="8" required>
+                </div>
+                <div class="w100">
+                	<button type="submit" name="login">Login</button>
+                </div>
             </form>
         </div>
     </div>

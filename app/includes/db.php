@@ -63,6 +63,18 @@ function searchProducts(string $term, string $category = ''): array
     return $filtered;
 }
 
+function getCategories(): array
+{
+	$categories = [];
+	$products = getProducts();
+	foreach ($products as $product) {
+		if (!in_array(strtolower($product['category']), $categories)) {
+			array_push($categories, strtolower($product['category']));
+		}
+	}
+	return $categories;
+}
+
 function getProductById(int $productId): ?array
 {
     foreach (getProducts() as $product) {

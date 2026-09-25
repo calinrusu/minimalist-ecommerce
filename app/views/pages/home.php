@@ -3,12 +3,15 @@
 ?>
 <h2>Featured products</h2>
 <p>Browse the catalog, add items to your cart, and place an order quickly.</p>
+<?php if (isset($categories) && count($categories) > 0) { ?>
 <div class="filter-row">
-    <a class="btn btn-secondary" href="index.php">All</a>
-    <a class="btn btn-secondary" href="index.php?category=Apparel">Apparel</a>
-    <a class="btn btn-secondary" href="index.php?category=Accessories">Accessories</a>
-    <a class="btn btn-secondary" href="index.php?category=Home">Home</a>
+	<a class="btn btn-secondary" href="/">All</a>
+	<?php foreach ($categories as $category) { ?>
+		<a class="btn btn-secondary" href="/?category=<?= $category ?>"><?= strtoupper($category) ?></a>
+	<?php } ?>
 </div>
+<?php } ?>
+
 <?php if ($searchTerm !== '' || $category !== ''): ?>
     <p>Showing results for: <strong><?php echo htmlspecialchars($searchTerm !== '' ? $searchTerm : $category); ?></strong></p>
 <?php endif; ?>

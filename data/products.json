@@ -14,5 +14,21 @@
         "price": 9.99,
         "description": "jdhgkjdfs\r\nsdfghjfd\r\nsdkaghkalsdf\r\ndslkahgkldsfhdl\r\ndskfgnkfdsal",
         "image": "\/assets\/images\/fleet100.jpeg"
+    },
+    {
+        "id": 6,
+        "name": "jaksdhgjhkasdjg",
+        "category": "category1",
+        "price": 67.12,
+        "description": "adfgdfgd\r\nsdfhsdfh\r\ndfshfghfs",
+        "image": "\/assets\/images\/jaksdhgjhkasdjg.jpeg"
+    },
+    {
+        "id": 7,
+        "name": "fgjadskfasd",
+        "category": "category2",
+        "price": 23.5,
+        "description": "kjfsahdjkghjsd\r\nsdajahgashdjkg\r\naskkhdgklaslhd",
+        "image": "\/assets\/images\/fgjadskfasd.jpeg"
     }
 ]

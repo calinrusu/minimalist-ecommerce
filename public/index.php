@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
 
 $searchTerm = trim($_GET['search'] ?? '');
 $category = trim($_GET['category'] ?? '');
-$products = getProducts();
+$categories = getCategories();
+$products = searchProducts($searchTerm, $category);
 
 require APP_PATH . '/views/layouts/header.php';
 require APP_PATH . '/views/pages/home.php';
