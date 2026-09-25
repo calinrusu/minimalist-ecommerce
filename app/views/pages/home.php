@@ -15,7 +15,7 @@
 <?php if ($searchTerm !== '' || $category !== ''): ?>
     <p>Showing results for: <strong><?php echo htmlspecialchars($searchTerm !== '' ? $searchTerm : $category); ?></strong></p>
 <?php endif; ?>
-<div class="grid">
+<div class="flex">
     <?php if (count($products) === 0): ?>
         <p>No products match your search.</p>
     <?php endif; ?>
