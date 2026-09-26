@@ -1,34 +1,29 @@
 [
     {
-        "id": 4,
-        "name": "Product number 4",
-        "category": "Test",
-        "price": 59.6,
-        "description": "dfghdjf\r\njasdhgjdgh\r\nasdghdfjd\r\nsdahgkd",
-        "image": "\/assets\/images\/productnumber4.jpeg"
+        "id": 1,
+        "name": "165\/60R14 75H X WONDER TH2 (E-4.7) TOURADOR",
+        "category": "Tires",
+        "price": 45,
+        "description": "Dim: 165\/60 R14\r\nSeason: Summer\r\nProfile: X wonder th2",
+        "image": "\/assets\/images\/16560r1475hxwonderth2e47tourador.jpeg",
+        "qty": 16
     },
     {
-        "id": 5,
-        "name": "Fleet 100",
-        "category": "Clothing",
-        "price": 9.99,
-        "description": "jdhgkjdfs\r\nsdfghjfd\r\nsdkaghkalsdf\r\ndslkahgkldsfhdl\r\ndskfgnkfdsal",
-        "image": "\/assets\/images\/fleet100.jpeg"
+        "id": 2,
+        "name": "165\/60R14 75H ROYAL A\/S BSW MS 3PMSF (E-4.7) ROYAL BLACK",
+        "category": "Tires",
+        "price": 47,
+        "description": "Dimension: 165\/60 R14\r\nSeason: All Season\r\nProfile: Royal a_s",
+        "image": "\/assets\/images\/16560r1475hroyalasbswms3pmsfe47royalblack.jpeg",
+        "qty": 12
     },
     {
-        "id": 6,
-        "name": "jaksdhgjhkasdjg",
-        "category": "category1",
-        "price": 67.12,
-        "description": "adfgdfgd\r\nsdfhsdfh\r\ndfshfghfs",
-        "image": "\/assets\/images\/jaksdhgjhkasdjg.jpeg"
-    },
-    {
-        "id": 7,
-        "name": "fgjadskfasd",
-        "category": "category2",
-        "price": 23.5,
-        "description": "kjfsahdjkghjsd\r\nsdajahgashdjkg\r\naskkhdgklaslhd",
-        "image": "\/assets\/images\/fgjadskfasd.jpeg"
+        "id": 3,
+        "name": "Acer Nitro 5 15.6&quot; i5-9300H 16GB RAM 500GB SSD RTX 2060 Win 11",
+        "category": "Laptops",
+        "price": 385,
+        "description": "Acer Nitro 5 15.6&quot; i5-9300H 16GB RAM 500GB SSD RTX 2060 Win 11\r\nItem specifics\r\nCondition\r\nUsed: An item that has been used previously. The item may have some signs of cosmetic wear, but is ... Read moreabout the condition\r\nProcessor\r\nIntel Core i5-9300H\r\nScreen Size\r\n15.6 in\r\nColor\r\nBlack, Red\r\nRAM Size\r\n16 GB\r\nMost Suitable For\r\nGaming\r\nSSD Capacity\r\n500 GB\r\nGPU\r\nNVIDIA GeForce RTX 2060\r\nBrand\r\nAcer\r\nSeries\r\nNitro\r\nType\r\nNotebook\/Laptop\r\nModel\r\nAcer Nitro 5\r\nConnectivity\r\nHDMI, USB-C, USB 3.2\r\nOperating System\r\nWindows 11 Home\r\nCategory\r\nbreadcrumb\r\nElectronics\r\nComputers\/Tablets &amp; Networking\r\nLaptops &amp; Netbooks\r\nPC Laptops &amp; Netbooks",
+        "image": "\/assets\/images\/acernitro5156quoti59300h16gbram500gbssdrtx2060win11.jpeg",
+        "qty": 3
     }
 ]

@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$name = htmlspecialchars(trim($_POST['name']));
 		$category = htmlspecialchars(trim($_POST['category']));
 		$price = (float) $_POST['price'];
+		$qty = (int) $_POST['qty'];
 		$description = htmlspecialchars(trim($_POST['description']));
 		if (!isset($_FILES['img']['name']) || $_FILES['img']['error'] > 0 || $_FILES['img']['type'] !== 'image/jpeg') {
 			setFlashMessage('Image is required, no errors, only jpeg!');
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 		$image = '/assets/images/' . preg_replace('/[^a-z0-9]/', '', strtolower($name)) . '.jpeg';
 		move_uploaded_file($_FILES['img']['tmp_name'], BASE_PATH . '/public' . $image);
-		createProductInStorage($name, $category, $price, $description, $image);
+		createProductInStorage($name, $category, $price, $description, $image, $qty);
 		setFlashMessage('Product created!');
 	}
 	if (isset($_POST['update'])) {
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'name' => htmlspecialchars(trim($_POST['name'])),
 			'category' => htmlspecialchars(trim($_POST['category'])),
 			'price' => (float) $_POST['price'],
+			'qty' => (int) $_POST['qty'],
 			'description' => htmlspecialchars(trim($_POST['description']))
 		];
 		if (isset($_FILES['img']['name']) && $_FILES['img']['error'] === 0 && $_FILES['img']['type'] === 'image/jpeg') {

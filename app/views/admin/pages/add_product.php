@@ -20,6 +20,10 @@
 				<input type="number" name="price" required min="0.01" step="0.01">
 			</div>
 			<div class="form-input">
+				<label>Available quantity (stock) *</label>
+				<input type="number" name="qty" required min="1" step="1">
+			</div>
+			<div class="form-input">
 				<label>Image *</label>
 				<input type="file" name="img" required accept="image/jpeg">
 			</div>

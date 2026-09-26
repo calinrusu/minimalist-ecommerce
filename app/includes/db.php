@@ -14,6 +14,23 @@ function loadAdminList(): array
 	return json_decode($contents, true);
 }
 
+function loadUsersList(): array
+{
+	$contents = file_get_contents(DB_PATH . '/users.json');
+	return json_decode($contents, true);
+}
+
+function getUserById(int $userId): ?array
+{
+    foreach (loadUsersList() as $user) {
+        if ((int) $user['id'] === $userId) {
+            return $user;
+        }
+    }
+
+    return null;
+}
+
 function loadStore(): array
 {
     $storeFile = getStoreFilePath();
@@ -86,7 +103,7 @@ function getProductById(int $productId): ?array
     return null;
 }
 
-function createProductInStorage(string $name, string $category, float $price, string $description, string $image): void
+function createProductInStorage(string $name, string $category, float $price, string $description, string $image, int $qty): void
 {
     $store = loadStore();
     $nextId = 1;
@@ -101,6 +118,7 @@ function createProductInStorage(string $name, string $category, float $price, st
         'price' => $price,
         'description' => $description,
         'image' => $image,
+        'qty' => $qty
     ];
 
     saveStore($store);
@@ -116,6 +134,7 @@ function updateProductInStorage(int $productId, array $data): void
             $product['price'] = (float) $data['price'];
             $product['description'] = $data['description'];
             $product['image'] = $data['image'];
+            $product['qty'] = $data['qty'];
             break;
         }
     }

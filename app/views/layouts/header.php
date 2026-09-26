@@ -19,10 +19,6 @@
             <a href="/cart.php">Cart</a>
             <a href="/account.php">Account</a>
         </nav>
-        <form class="search-form" method="get" action="/">
-            <input type="text" name="search" value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>" placeholder="Search products">
-            <button type="submit">Search</button>
-        </form>
     </div>
 </header>
 <main class="container">

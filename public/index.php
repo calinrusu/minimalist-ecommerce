@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
     }
 }
 
-$searchTerm = trim($_GET['search'] ?? '');
-$category = trim($_GET['category'] ?? '');
+$searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
+$category = isset($_GET['category']) ? trim($_GET['category']) : '';
 $categories = getCategories();
 $products = searchProducts($searchTerm, $category);
 

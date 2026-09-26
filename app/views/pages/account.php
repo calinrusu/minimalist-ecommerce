@@ -8,7 +8,7 @@
         <p>Email: <?php echo htmlspecialchars($customer['email']); ?></p>
         <p><a class="btn" href="account.php?logout=1">Log out</a></p>
     </div>
-    <div class="card" style="margin-top: 1rem;">
+    <div class="card mt1">
         <h3>Wishlist</h3>
         <?php $wishlistItems = getWishlistItems(); ?>
         <?php if (empty($wishlistItems)): ?>
@@ -26,19 +26,19 @@
         <div class="card w50">
             <h3>Create account</h3>
             <form method="post">
-                <div class="w100">
+                <div class="w100 mt1">
                 	<label>Your name *</label>
                 	<input type="text" name="name" required>
                 </div>
-                <div class="w100">
+                <div class="w100 mt1">
                 	<label>Your email *</label>
                 	<input type="email" name="email" required>
                 </div>
-                <div class="w100">
+                <div class="w100 mt1">
                 	<label>Your password *</label>
                 	<input type="password" name="password" minlength="8" required>
                 </div>
-                <div class="w100">
+                <div class="w100 mt1">
                 	<button type="submit" name="register">Create account</button>
                 </div>
             </form>
@@ -47,15 +47,15 @@
         <div class="card w50">
             <h3>Login</h3>
             <form method="post">
-                <div class="w100">
+                <div class="w100 mt1">
                 	<label>Your email *</label>
                 	<input type="email" name="email" required>
                 </div>
-                <div class="w100">
+                <div class="w100 mt1">
                 	<label>Your password *</label>
                 	<input type="password" name="password" minlength="8" required>
                 </div>
-                <div class="w100">
+                <div class="w100 mt1">
                 	<button type="submit" name="login">Login</button>
                 </div>
             </form>
