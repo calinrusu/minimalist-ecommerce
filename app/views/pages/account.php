@@ -2,7 +2,7 @@
 // app/views/pages/account.php
 ?>
 <h2>Customer account</h2>
-<?php if ($loggedIn && $customer): ?>
+<?php if (isset($_SESSION['customer'])): ?>
     <div class="card">
         <h3>Welcome, <?php echo htmlspecialchars($customer['name']); ?></h3>
         <p>Email: <?php echo htmlspecialchars($customer['email']); ?></p>

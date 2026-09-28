@@ -5,35 +5,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
-
-    if ($name !== '' && $email !== '' && $password !== '') {
-        $_SESSION['customer'] = [
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-        ];
-        setFlashMessage('Account created successfully.');
-        header('Location: account.php');
-        exit;
+    if (!is_valid_email($email)) {
+    	setFlashMessage('Your email address is not valid!');
+    	header('Location: /account.php');
+    	exit;
+    }
+    if (empty($name)) {
+    	setFlashMessage('Your name is required!');
+    	header('Location: /account.php');
+    	exit;
+    }
+    if (strlen($password) < 8) {
+    	setFlashMessage('Your password is too short, 8 characters minimum!');
+    	header('Location: /account.php');
+    	exit;
+    }
+    $users = loadUsersList();
+    $userExists = 0;
+    foreach ($users as $key => $value) {
+    	if ($value['email'] === $email) {
+    		$userExists += 1;
+    	}
+    }
+    if ($userExists > 0) {
+    	setFlashMessage('The email address (' . $email . ') is already registered!');
+    	header('Location: /account.php');
+    	exit;
     }
 
-    setFlashMessage('Please complete all fields.');
+    $nextId = count($users) + 1;
+    $users[] = [
+    	'id' => $nextId,
+    	'name' => $name,
+    	'email' => $email,
+    	'password' => $password
+    ];
+    file_put_contents(DB_PATH . '/users.json', json_encode($users));
+    setFlashMessage('Thank you for registering, use the login form to authenticate!');
+    header('Location: /account.php');
+    exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
-
-    $customer = $_SESSION['customer'] ?? null;
-    if ($customer && $customer['email'] === $email && $customer['password'] === $password) {
-        $customer['logged_in'] = true;
-        $_SESSION['customer'] = $customer;
-        setFlashMessage('Welcome back.');
-        header('Location: account.php');
-        exit;
+    $users = loadUsersList();
+    $userExists = 0;
+    $passwordMatches = 0;
+    $userId = 0;
+    foreach ($users as $key => $value) {
+    	if ($value['email'] === $email) {
+    		$userExists++;
+    		if ($value['password'] === $password) {
+    			$passwordMatches++;
+    			$userId += (int) $value['id'];
+    		}
+    	}
     }
-
-    setFlashMessage('Invalid email or password.');
+    if ($userExists < 1) {
+    	setFlashMessage('The email address (' . htmlspecialchars($email) . ') is not registered!');
+    	header('Location: /account.php');
+    	exit;
+    }
+    if ($passwordMatches < 1) {
+    	setFlashMessage('The password is not correct!');
+    	header('Location: /account.php');
+    	exit;
+    }
+    loginUser($userId);
+    setFlashMessage('Welcome back!');
+    header('Location: /account.php');
+    exit;
 }
 
 if (isset($_GET['logout'])) {
@@ -43,8 +85,7 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-$customer = $_SESSION['customer'] ?? null;
-$loggedIn = !empty($customer['logged_in']);
+$customer = getUserById((int) $_SESSION['customer']);
 
 require APP_PATH . '/views/layouts/header.php';
 require APP_PATH . '/views/pages/account.php';

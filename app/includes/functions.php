@@ -153,6 +153,20 @@ function logoutAdmin(): void
     unset($_SESSION['is_admin']);
 }
 
+function isUserLoggedIn(): bool
+{
+    return !empty($_SESSION['customer']);
+}
+
+function loginUser(int $userId): bool
+{
+	if (isset($_SESSION['customer']) && (int) $_SESSION['customer'] === $userId) {
+		return false;
+	}
+	$_SESSION['customer'] = $userId;
+	return true;
+}
+
 function getCartSummary(): array
 {
     $cart = $_SESSION['cart'] ?? [];

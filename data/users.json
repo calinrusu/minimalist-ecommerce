@@ -1,8 +1,1 @@
-[
-	{
-		"id": 1,
-		"name": "Calin Rusu",
-		"email": "clnrusu@gmail.com",
-		"password": "pass1234"
-	}
-]
+[{"id":1,"name":"Calin Rusu","email":"clnrusu@gmail.com","password":"pass1234"},{"id":2,"name":"Calin Rusu","email":"clnrusu@yahoo.com","password":"Pydperr7&"}]
