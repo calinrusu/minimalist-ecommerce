@@ -8,16 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= META_TITLE ?></title>
     <meta name="description" content="<?= META_DESCRIPTION ?>">
-    <link rel="stylesheet" href="assets/style.css">
+    <style><?php echo str_replace(PHP_EOL, ' ', file_get_contents(BASE_PATH . '/public/assets/css/style.css')); ?></style>
 </head>
 <body>
 <header class="site-header">
     <div class="container flex">
         <nav>
             <a href="/"><?= SHOP_NAME ?></a>
-            <a href="/">Products</a>
-            <a href="/cart.php">Cart</a>
-            <a href="/account.php">Account</a>
+            <a href="/" title="Browse Products">Products</a>
+            <a href="/cart.php" title="My Shopping cart">Cart</a>
+            <a href="/account.php" title="My Account">Account</a>
+            <?php if (isset($_SESSION['customer'])): ?>
+            	<a href="/account.php?logout" title="Logout">Logout</a>
+            <?php endif; ?>
         </nav>
     </div>
 </header>

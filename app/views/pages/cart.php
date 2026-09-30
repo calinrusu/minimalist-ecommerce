@@ -33,13 +33,15 @@
             <p><strong>Coupon:</strong> <?php echo htmlspecialchars($coupon); ?> (-$<?php echo number_format($discountAmount, 2); ?>)</p>
         <?php endif; ?>
         <p><strong>Total: $<?php echo number_format($finalTotal, 2); ?></strong></p>
-        <form method="post" class="inline-form" style="margin-top: 0.6rem;">
-            <input type="text" name="coupon_code" placeholder="Coupon code" value="<?php echo htmlspecialchars($coupon); ?>">
-            <button type="submit" name="apply_coupon">Apply coupon</button>
-        </form>
-        <div class="filter-row">
-            <button type="submit" name="update_cart">Update cart</button>
-            <a class="btn" href="checkout.php">Checkout</a>
+        <div class="flex">
+        	<div class="w50">
+			    <input type="text" name="coupon_code" placeholder="Coupon code" value="<?php echo htmlspecialchars($coupon); ?>">
+			    <button type="submit" class="mt1" name="apply_coupon">Apply coupon</button>
+        	</div>
+        	<div class="w50 text-end">
+		        <button type="submit" class="mt3" name="update_cart">Update cart</button>&nbsp;&nbsp;
+		        <button type="button" href="checkout.php" onclick="window.location.href = '/checkout.php'">Checkout</button>
+        	</div>
         </div>
     </form>
 <?php endif; ?>

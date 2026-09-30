@@ -81,11 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 if (isset($_GET['logout'])) {
     unset($_SESSION['customer']);
     setFlashMessage('You have been logged out.');
-    header('Location: account.php');
+    header('Location: /account.php');
     exit;
 }
 
-$customer = getUserById((int) $_SESSION['customer']);
+if (isset($_SESSION['customer'])) {
+	$customer = getUserById((int) $_SESSION['customer']);
+}
 
 require APP_PATH . '/views/layouts/header.php';
 require APP_PATH . '/views/pages/account.php';

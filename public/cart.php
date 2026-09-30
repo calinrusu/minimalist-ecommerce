@@ -6,14 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cart'])) {
         updateCartQuantity((int) $productId, (int) $quantity);
     }
     setFlashMessage('Cart updated.');
-    header('Location: cart.php');
+    header('Location: /cart.php');
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remove'])) {
     removeFromCart((int) $_GET['remove']);
     setFlashMessage('Item removed.');
-    header('Location: cart.php');
+    header('Location: /cart.php');
     exit;
 }
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_coupon'])) {
         $_SESSION['coupon'] = '';
         setFlashMessage('Coupon code is invalid.');
     }
-    header('Location: cart.php');
+    header('Location: /cart.php');
     exit;
 }
 

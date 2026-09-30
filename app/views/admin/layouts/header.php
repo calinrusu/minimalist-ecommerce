@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= META_TITLE ?></title>
     <meta name="description" content="<?= META_DESCRIPTION ?>">
-    <link rel="stylesheet" href="/assets/style.css">
+    <style><?php echo str_replace(PHP_EOL, ' ', file_get_contents(BASE_PATH . '/public/assets/css/style.css')); ?></style>
 </head>
 <body>
 <?php if (isAdminLoggedIn()) { ?>
